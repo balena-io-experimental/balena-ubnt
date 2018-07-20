@@ -4,6 +4,9 @@ volumes:
         unms-data:
         nginx-data:
 services:
+        ddclient:
+                build: ./ddclient-cloudflare
+                privileged: true
         nginx:
                 build: ./nginx
                 ports:
