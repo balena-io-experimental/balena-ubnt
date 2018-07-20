@@ -2,7 +2,18 @@ version: '2'
 volumes:
         unifi-data:
         unms-data:
+        nginx-data:
 services:
+        nginx:
+                build: ./nginx
+                ports:
+                        - "443:443"
+                        - "80:80"
+                volumes:
+                        - "nginx-data:/app/data"
+                links:
+                        - "unifi"
+                        - "unms"
         unifi:
                 image: jacobalberty/unifi:5.8.24
                 ports:
@@ -11,12 +22,9 @@ services:
                         - "3478:3478/udp" # STUN
                         - "6789:6789" # Mobile speed tests
                         - "8080:8080" # Device controller communication
-                        - "10443:8443" # Controller GUI in web browser
                 volumes:
                         - "unifi-data:/unifi"
         unms:
                 image: oznu/unms:0.12.1
-                ports:
-                        - "12443:443"
                 volumes:
                         - "unms-data:/config"
