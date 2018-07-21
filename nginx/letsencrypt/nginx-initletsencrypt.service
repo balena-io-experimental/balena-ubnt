@@ -1,0 +1,16 @@
+[Unit]
+Description=Init Letsencrypt NGINX daemon
+
+[Service]
+Type=forking
+PIDFile=/run/nginx.pid
+PrivateDevices=yes
+SyslogLevel=err
+
+ExecStart=/usr/sbin/nginx -g 'pid /run/nginx.pid; error_log stderr;' -c /app/nginx-initletsencrypt.conf
+ExecReload=/usr/sbin/nginx -s reload -c /app/nginx-initletsencrypt.conf
+KillSignal=SIGQUIT
+KillMode=mixed
+StandardOutput=tty
+StandardError=tty
+TTYPath=/dev/console
