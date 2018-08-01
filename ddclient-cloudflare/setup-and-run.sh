@@ -2,6 +2,11 @@
 
 set -e
 
+if [ -n "$NODDNS" ]; then
+	echo "[INFO] No DDNS requested."
+	exit 1
+fi
+
 DDCLIENT_UPDATE_SECONDS=${DDCLIENT_UPDATE_SECONDS:-600}
 
 if [ -z "$CLOUDFLARE_APIKEY" ] || [ -z "$CLOUDFLARE_LOGIN" ] || [ -z "$DOMAIN" ]; then
