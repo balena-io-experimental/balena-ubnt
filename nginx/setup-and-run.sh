@@ -62,7 +62,7 @@ else
 	loginfo "Setting up self-signed certificates."
 	for service in "${SERVICES[@]}"; do
 		SUBDOMAIN=${service%%:*}
-		selfsigned_generate "$i.$DOMAIN"
+		selfsigned_generate "$SUBDOMAIN.$DOMAIN"
 	done
 fi
 
