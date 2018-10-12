@@ -34,3 +34,5 @@ services:
                 image: oznu/unms:0.13.0-armhf
                 volumes:
                         - "unms-data:/config"
+                ports:
+                        - "2055:2055/udp" # Netflow
