@@ -31,7 +31,7 @@ services:
                 volumes:
                         - "unifi-data:/unifi"
         unms:
-                image: oznu/unms:0.13.0-armhf
+                image: oznu/unms:armhf
                 volumes:
                         - "unms-data:/config"
                 ports:
