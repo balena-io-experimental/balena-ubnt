@@ -24,10 +24,10 @@ services:
                 image: jacobalberty/unifi:arm32v7-beta
                 ports:
                         # See https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
-                        - "10001:10001/udp" # AP discovery 
                         - "3478:3478/udp" # STUN
                         - "6789:6789" # Mobile speed tests
                         - "8080:8080" # Device controller communication
+                        - "10001:10001/udp" # AP discovery
                 volumes:
                         - "unifi-data:/unifi"
         unms:
