@@ -27,6 +27,7 @@ services:
                         - "3478:3478/udp" # STUN
                         - "6789:6789" # Mobile speed tests
                         - "8080:8080" # Device controller communication
+                        - "8443:8443"
                         - "10001:10001/udp" # AP discovery
                 volumes:
                         - "unifi-data:/unifi"
