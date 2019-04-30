@@ -21,7 +21,7 @@ services:
                         - "unifi"
                         - "unms"
         unifi:
-                image: jacobalberty/unifi:5.8.24
+                build: ./unifi
                 ports:
                         # See https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
                         - "10001:10001/udp" # AP discovery 
@@ -31,6 +31,6 @@ services:
                 volumes:
                         - "unifi-data:/unifi"
         unms:
-                image: oznu/unms:0.12.1
+                build: ./unms
                 volumes:
                         - "unms-data:/config"
