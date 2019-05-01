@@ -1,8 +1,8 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-alpine:3.7
+FROM balenalib/%%RESIN_MACHINE_NAME%%-alpine:3.7
 
 WORKDIR /usr/src/app
 
-RUN apk add --no-cache perl git wget curl make gcc openssl perl-dev musl-dev openssl-dev
+RUN install_packages perl git wget curl make gcc openssl perl-dev musl-dev openssl-dev
 RUN curl -L http://cpanmin.us | perl - App::cpanminus
 RUN cpanm Data::Validate::IP Net::SSLeay IO::Socket::SSL
 RUN git clone https://github.com/ddclient/ddclient.git ddclient-cloudflare \
@@ -14,10 +14,5 @@ RUN git clone https://github.com/ddclient/ddclient.git ddclient-cloudflare \
 COPY conf/ddclient.conf /etc/ddclient/ddclient.conf
 RUN chmod 600 /etc/ddclient/ddclient.conf
 COPY setup-and-run.sh /usr/src/app
-
-# No need for dbus
-RUN rc-update del dbus default
-
-ENV INITSYSTEM on
 
 CMD ["bash", "./setup-and-run.sh"]
