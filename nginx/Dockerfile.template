@@ -1,4 +1,4 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-debian:stretch
+FROM balenalib/%%RESIN_MACHINE_NAME%%-debian:stretch
 
 #
 # Imported from https://github.com/nginxinc/docker-nginx/blob/master/mainline/stretch/Dockerfile
@@ -94,9 +94,6 @@ RUN set -x \
 # Customisation
 #
 
-ENV INITSYSTEM on
-
-
 WORKDIR /app
 
 RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/sources.list
@@ -107,7 +104,5 @@ RUN set -x \
 
 COPY conf/nginx-spec.conf /app/nginx-spec.conf
 COPY setup-and-run.sh /app/setup-and-run.sh
-
-RUN systemctl disable nginx.service certbot.timer
 
 CMD ["bash", "/app/setup-and-run.sh"]
