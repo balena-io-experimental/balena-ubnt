@@ -1,1 +1,3 @@
 FROM oznu/unms:0.13.3
+
+RUN chmod 0644 /etc/logrotate.d/unms
