@@ -1,1 +1,1 @@
-FROM jacobalberty/unifi:5.10.23
+FROM jacobalberty/unifi:5.10.25
