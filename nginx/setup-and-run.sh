@@ -22,7 +22,7 @@ function letsencrypt_generate {
 		loginfo "$_domain letsencrypt certificate in place."
 	else
 		loginfo "Generating new letsencrypt certificate for $_domain ..."
-		$CERTBOT certonly --register-unsafely-without-email --agree-tos \
+		$CERTBOT certonly -n --register-unsafely-without-email --agree-tos \
 			 --dns-cloudflare --dns-cloudflare-credentials "$CLOUDFLARE_CREDS" \
 			 -d "$_domain"
 	fi
