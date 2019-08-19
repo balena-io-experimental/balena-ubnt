@@ -1,13 +1,13 @@
-FROM balenalib/%%RESIN_MACHINE_NAME%%-alpine:3.7
+FROM balenalib/%%RESIN_MACHINE_NAME%%-alpine:3.10
 
 WORKDIR /usr/src/app
 
-RUN install_packages perl git wget curl make gcc openssl perl-dev musl-dev openssl-dev
-RUN curl -L http://cpanmin.us | perl - App::cpanminus
+ENV DDCLIENT_VERSION=ab706ccae039cc5144c6ef77700285f5c1c4645e
+RUN install_packages perl git wget curl make gcc openssl perl-dev musl-dev openssl-dev zlib-dev perl-app-cpanminus
 RUN cpanm Data::Validate::IP Net::SSLeay IO::Socket::SSL
 RUN git clone https://github.com/ddclient/ddclient.git ddclient-cloudflare \
 	&& cd ddclient-cloudflare \
-	&& git checkout ab706ccae039cc5144c6ef77700285f5c1c4645e \
+	&& git checkout -b build "${DDCLIENT_VERSION}" \
 	&& cp ddclient /usr/sbin \
 	&& mkdir -p /etc/ddclient /var/cache/ddclient
 
