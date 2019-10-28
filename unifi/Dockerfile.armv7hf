@@ -1,1 +1,1 @@
-FROM jacobalberty/unifi:5.11.46-arm32v7
+FROM jacobalberty/unifi:5.11.50-arm32v7
