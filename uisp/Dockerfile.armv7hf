@@ -1,0 +1,3 @@
+FROM nico640/docker-unms:armhf
+
+RUN chmod 0644 /etc/logrotate.d/uisp
