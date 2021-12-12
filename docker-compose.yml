@@ -1,7 +1,7 @@
 version: '2'
 volumes:
         unifi-data:
-        unms-data:
+        uisp-data:
         nginx-data:
         letsencrypt:
 services:
@@ -19,18 +19,18 @@ services:
 
                 links:
                         - "unifi"
-                        - "unms"
+                        - "uisp"
         unifi:
                 build: ./unifi
                 ports:
                         # See https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
-                        - "10001:10001/udp" # AP discovery 
+                        - "10001:10001/udp" # AP discovery
                         - "3478:3478/udp" # STUN
                         - "6789:6789" # Mobile speed tests
                         - "8080:8080" # Device controller communication
                 volumes:
                         - "unifi-data:/unifi"
-        unms:
-                build: ./unms
+        uisp:
+                build: ./uisp
                 volumes:
-                        - "unms-data:/config"
+                        - "uisp-data:/config"
